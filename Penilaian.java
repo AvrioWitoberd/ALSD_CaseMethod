@@ -20,7 +20,7 @@ public class Penilaian {
     }
 
     public void tampilkanRingkas() {
-        System.out.printf("%s | %s | Nilai Akhir: %.1   xf\n",
+        System.out.printf("%s | %s | Nilai Akhir: %.1f\n",
                 mahasiswa.nama, mataKuliah.namaMK, nilaiAkhir);
     }
 }
