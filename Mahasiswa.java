@@ -8,4 +8,8 @@ public class Mahasiswa {
         this.nama = nama;
         this.prodi = prodi;
     }
+
+    public void tampilMahasiswa() {
+        System.out.printf("NIM: %s | Nama: %s | Prodi: %s\n", nim, nama, prodi);
+    }
 }

@@ -1,119 +1,107 @@
 import java.util.Scanner;
 
 public class SiakadMain {
-    static Mahasiswa[] mahasiswa;
-    static MataKuliah[] mataKuliah;
-    static Penilaian[] penilaian;
-
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        isiDataAwal();
+        Scanner scBR = new Scanner(System.in);
 
-        int pilihan;
-        do {
-            tampilkanMenu();
-            pilihan = input.nextInt();
-            input.nextLine();
-
-            switch (pilihan) {
-                case 1 -> tampilkanDaftarMahasiswa();
-                case 2 -> tampilkanDaftarMataKuliah();
-                case 3 -> tampilkanDataPenilaian();
-                case 4 -> urutkanDanTampilkanPenilaian();
-                case 5 -> cariMahasiswaByNIM(input);
-                case 0 -> System.out.println("Program selesai.");
-                default -> System.out.println("Pilihan tidak valid.");
-            }
-        } while (pilihan != 0);
-    }
-
-    static void tampilkanMenu() {
-        System.out.println("\n=== MENU SISTEM AKADEMIK ===");
-        System.out.println("1. Tampilkan Daftar Mahasiswa");
-        System.out.println("2. Tampilkan Daftar Mata Kuliah");
-        System.out.println("3. Tampilkan Data Penilaian");
-        System.out.println("4. Urutkan Mahasiswa Berdasarkan Nilai Akhir");
-        System.out.println("5. Cari Mahasiswa Berdasarkan NIM");
-        System.out.println("0. Keluar");
-        System.out.print("Pilih menu: ");
-    }
-
-    static void isiDataAwal() {
-        mahasiswa = new Mahasiswa[]{
+        Mahasiswa[] daftarMahasiswa = {
             new Mahasiswa("22001", "Ali Rahman", "Informatika"),
             new Mahasiswa("22002", "Budi Santoso", "Informatika"),
-            new Mahasiswa("22003", "Citra Dewi", "Informatika")
+            new Mahasiswa("22003", "Citra Dewi", "Sistem Informasi Bisnis")
         };
 
-        mataKuliah = new MataKuliah[]{
+        MataKuliah[] daftarMK = {
             new MataKuliah("MK001", "Struktur Data", 3),
             new MataKuliah("MK002", "Basis Data", 3),
             new MataKuliah("MK003", "Desain Web", 3)
         };
 
-        penilaian = new Penilaian[]{
-            new Penilaian(mahasiswa[0], mataKuliah[0], 80, 85, 90),
-            new Penilaian(mahasiswa[0], mataKuliah[1], 60, 75, 70),
-            new Penilaian(mahasiswa[1], mataKuliah[0], 75, 70, 80),
-            new Penilaian(mahasiswa[2], mataKuliah[1], 85, 90, 95),
-            new Penilaian(mahasiswa[2], mataKuliah[2], 80, 90, 65)
+        Penilaian[] daftarNilai = {
+            new Penilaian(daftarMahasiswa[0], daftarMK[0], 80, 85, 90),
+            new Penilaian(daftarMahasiswa[0], daftarMK[1], 60, 75, 70),
+            new Penilaian(daftarMahasiswa[1], daftarMK[0], 75, 70, 80),
+            new Penilaian(daftarMahasiswa[2], daftarMK[1], 85, 90, 95),
+            new Penilaian(daftarMahasiswa[2], daftarMK[2], 80, 90, 65)
         };
-    }
 
-    static void tampilkanDaftarMahasiswa() {
-        System.out.println("\nDaftar Mahasiswa:");
-        for (Mahasiswa m : mahasiswa) {
-            System.out.printf("NIM: %s | Nama: %s | Prodi: %s\n", m.nim, m.nama, m.prodi);
-        }
-    }
+        int pilihan;
+        do {
+            System.out.println("\n=== MENU SISTEM AKADEMIK ===");
+            System.out.println("1. Tampilkan Daftar Mahasiswa");
+            System.out.println("2. Tampilkan Daftar Mata Kuliah");
+            System.out.println("3. Tampilkan Data Penilaian");
+            System.out.println("4. Urutkan Mahasiswa Berdasarkan Nilai Akhir");
+            System.out.println("5. Cari Mahasiswa Berdasarkan NIM");
+            System.out.println("0. Keluar");
+            System.out.print("Pilih menu: ");
+            pilihan = scBR.nextInt();
+            scBR.nextLine(); // buffer
 
-    static void tampilkanDaftarMataKuliah() {
-        System.out.println("\nDaftar Mata Kuliah:");
-        for (MataKuliah mk : mataKuliah) {
-            System.out.printf("Kode MK: %s | Nama: %s | SKS: %d\n", mk.kodeMK, mk.namaMK, mk.sks);
-        }
-    }
+            switch (pilihan) {
+                case 1:
+                    System.out.println("\nDaftar Mahasiswa:");
+                    for (Mahasiswa mhs : daftarMahasiswa) {
+                        mhs.tampilMahasiswa();
+                    }
+                    break;
 
-    static void tampilkanDataPenilaian() {
-        System.out.println("\nData Penilaian:");
-        for (Penilaian p : penilaian) {
-            p.tampilkanRingkas();
-        }
-    }
+                case 2:
+                    System.out.println("\nDaftar Mata Kuliah:");
+                    for (MataKuliah mk : daftarMK) {
+                        mk.tampilMatakuliah();
+                    }
+                    break;
 
-    static void urutkanDanTampilkanPenilaian() {
-        for (int i = 0; i < penilaian.length - 1; i++) {
-            for (int j = 0; j < penilaian.length - i - 1; j++) {
-                if (penilaian[j].hitungNilaiAkhir() < penilaian[j + 1].hitungNilaiAkhir()) {
-                    Penilaian temp = penilaian[j];
-                    penilaian[j] = penilaian[j + 1];
-                    penilaian[j + 1] = temp;
-                }
+                case 3:
+                    System.out.println("\nData Penilaian:");
+                    for (Penilaian p : daftarNilai) {
+                        p.tampilkanRingkas();
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("\nData Penilaian (Diurutkan Berdasarkan Nilai Akhir):");
+                    // Bubble Sort Berdasarkan Nilai Akhir
+                    for (int i = 0; i < daftarNilai.length - 1; i++) {
+                        for (int j = 0; j < daftarNilai.length - i - 1; j++) {
+                            if (daftarNilai[j].nilaiAkhir < daftarNilai[j + 1].nilaiAkhir) {
+                                Penilaian temp = daftarNilai[j];
+                                daftarNilai[j] = daftarNilai[j + 1];
+                                daftarNilai[j + 1] = temp;
+                            }
+                        }
+                    }
+                    for (Penilaian p : daftarNilai) {
+                        p.tampilkanRingkas();
+                    }
+                    break;
+
+                case 5:
+                    System.out.print("Masukkan NIM mahasiswa yang dicari: ");
+                    String cariNIM = scBR.nextLine();
+                    boolean ditemukan = false;
+                    for (Mahasiswa mhs : daftarMahasiswa) {
+                        if (mhs.nim.equalsIgnoreCase(cariNIM)) {
+                            System.out.print("Mahasiswa Ditemukan: ");
+                            mhs.tampilMahasiswa();
+                            ditemukan = true;
+                            break;
+                        }
+                    }
+                    if (!ditemukan) {
+                        System.out.println("Mahasiswa dengan NIM tersebut tidak ditemukan.");
+                    }
+                    break;
+
+                case 0:
+                    System.out.println("Keluar dari program.");
+                    break;
+
+                default:
+                    System.out.println("Menu tidak valid. Silakan pilih lagi.");
             }
-        }
 
-        System.out.println("\nData Penilaian (Diurutkan):");
-        for (Penilaian p : penilaian) {
-            p.tampilkanRingkas();
-        }
+        } while (pilihan != 0);
+        scBR.close();
     }
-
-    static void cariMahasiswaByNIM(Scanner input) {
-        System.out.print("\nMasukkan NIM mahasiswa yang dicari: ");
-        String cariNIM = input.nextLine();
-        boolean ditemukan = false;
-    
-        for (Mahasiswa m : mahasiswa) {
-            if (m.nim.equalsIgnoreCase(cariNIM)) {
-                System.out.printf("Mahasiswa Ditemukan: NIM: %s | Nama: %s | Prodi: %s\n", m.nim, m.nama, m.prodi);
-                ditemukan = true;
-                break;
-            }
-        }
-    
-        if (!ditemukan) {
-            System.out.println("Mahasiswa dengan NIM " + cariNIM + " tidak ditemukan.");
-        }
-    }
-    
 }

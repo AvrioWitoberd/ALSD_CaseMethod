@@ -8,4 +8,8 @@ public class MataKuliah {
         this.namaMK = namaMK;
         this.sks = sks;
     }
+
+    public void tampilMatakuliah() {
+        System.out.printf("Kode MK: %s | Nama: %s | SKS: %d\n", kodeMK, namaMK, sks);
+    }
 }
