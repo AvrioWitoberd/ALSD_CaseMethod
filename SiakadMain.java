@@ -99,20 +99,21 @@ public class SiakadMain {
     }
 
     static void cariMahasiswaByNIM(Scanner input) {
-        System.out.print("\nMasukkan NIM yang dicari: ");
+        System.out.print("\nMasukkan NIM mahasiswa yang dicari: ");
         String cariNIM = input.nextLine();
         boolean ditemukan = false;
-
-        System.out.println("\nHasil Pencarian:");
-        for (Penilaian p : penilaian) {
-            if (p.mahasiswa.nim.equalsIgnoreCase(cariNIM)) {
-                p.tampilkanRingkas();
+    
+        for (Mahasiswa m : mahasiswa) {
+            if (m.nim.equalsIgnoreCase(cariNIM)) {
+                System.out.printf("Mahasiswa Ditemukan: NIM: %s | Nama: %s | Prodi: %s\n", m.nim, m.nama, m.prodi);
                 ditemukan = true;
+                break;
             }
         }
-
+    
         if (!ditemukan) {
-            System.out.println("Data tidak ditemukan.");
+            System.out.println("Mahasiswa dengan NIM " + cariNIM + " tidak ditemukan.");
         }
     }
+    
 }
