@@ -13,7 +13,7 @@ public class SiakadMain {
         do {
             tampilkanMenu();
             pilihan = input.nextInt();
-            input.nextLine(); // buang newline
+            input.nextLine();
 
             switch (pilihan) {
                 case 1 -> tampilkanDaftarMahasiswa();
@@ -28,7 +28,7 @@ public class SiakadMain {
     }
 
     static void tampilkanMenu() {
-        System.out.println("\n=== MENU ===");
+        System.out.println("\n=== MENU SISTEM AKADEMIK ===");
         System.out.println("1. Tampilkan Daftar Mahasiswa");
         System.out.println("2. Tampilkan Daftar Mata Kuliah");
         System.out.println("3. Tampilkan Data Penilaian");
