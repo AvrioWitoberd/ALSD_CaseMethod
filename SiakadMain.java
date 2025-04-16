@@ -63,16 +63,14 @@ public class SiakadMain {
     static void tampilkanDaftarMahasiswa() {
         System.out.println("\nDaftar Mahasiswa:");
         for (Mahasiswa m : mahasiswa) {
-            System.out.printf("NIM: %s | Nama: %s | Prodi: %s\n",
-                    m.getNim(), m.getNama(), m.getProdi());
+            System.out.printf("NIM: %s | Nama: %s | Prodi: %s\n", m.nim, m.nama, m.prodi);
         }
     }
 
     static void tampilkanDaftarMataKuliah() {
         System.out.println("\nDaftar Mata Kuliah:");
         for (MataKuliah mk : mataKuliah) {
-            System.out.printf("Kode MK: %s | Nama: %s | SKS: %d\n",
-                    mk.getKodeMK(), mk.getNamaMK(), mk.getSks());
+            System.out.printf("Kode MK: %s | Nama: %s | SKS: %d\n", mk.kodeMK, mk.namaMK, mk.sks);
         }
     }
 
@@ -84,7 +82,6 @@ public class SiakadMain {
     }
 
     static void urutkanDanTampilkanPenilaian() {
-        // Bubble Sort descending by nilai akhir
         for (int i = 0; i < penilaian.length - 1; i++) {
             for (int j = 0; j < penilaian.length - i - 1; j++) {
                 if (penilaian[j].hitungNilaiAkhir() < penilaian[j + 1].hitungNilaiAkhir()) {
@@ -108,7 +105,7 @@ public class SiakadMain {
 
         System.out.println("\nHasil Pencarian:");
         for (Penilaian p : penilaian) {
-            if (p.getMahasiswa().getNim().equalsIgnoreCase(cariNIM)) {
+            if (p.mahasiswa.nim.equalsIgnoreCase(cariNIM)) {
                 p.tampilkanRingkas();
                 ditemukan = true;
             }
